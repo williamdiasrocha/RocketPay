@@ -14,7 +14,7 @@ function setCardType(type) {
     cielo: ["#01AEF0", "#149880"],
     googleplay: ["#981493", "#DF29CD"],
     default: ["black", "gray"],
-  }
+    }
 
   ccBgColor01.setAttribute("fill", colors[type][0])
   ccBgColor02.setAttribute("fill", colors[type][1])
@@ -51,7 +51,7 @@ const expirationDatePattern = {
 const expirationDateMasked = IMask(expirationDate, expirationDatePattern)
 
 const cardNumber = document.querySelector("#card-number")
-const cardNumberPattern= {
+const cardNumberPattern = {
   mask: [
     {
       mask: "0000 0000 0000 0000",
@@ -65,11 +65,6 @@ const cardNumberPattern= {
     },
     {
       mask: "0000 0000 0000 0000",
-      regex: /^7\d{0,15}/,
-      cardtype: "default",
-    },
-    {
-      mask: "0000 0000 0000 0000",
       regex: /^8\d{0,15}/,
       cardtype: "cielo",
     },
@@ -78,6 +73,10 @@ const cardNumberPattern= {
       regex: /^9\d{0,15}/,
       cardtype: "googleplay",
     },
+    {
+      mask: "0000 0000 0000 0000",
+      cardtype: "default",
+    },
   ],
   dispatch: function(appended, dynamicMasked) {
     const number = (dynamicMasked.value + appended).replace(/\D/g, "")
@@ -85,7 +84,7 @@ const cardNumberPattern= {
       return number.match(item.regex)
     })
 
-    //console.log(foundMask)
+    console.log(foundMask)
     return foundMask
   },
 }
